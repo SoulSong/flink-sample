@@ -22,16 +22,17 @@ public class EntityBatchJob {
 
     public static void main(String[] args) throws Exception {
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-        DataSource<Person> dataSource = env.fromElements(new Person("foo", 15),
+        DataSet<Person> dataSource = env.fromElements(new Person("foo", 15),
                 new Person("bar", 16), new Person("Foo", 25),
                 new Person("car", 12), new Person("foo", 10),
                 new Person("Bar", 11));
+        dataSource.print();
 
         // try with FlatMapFunction
         DataSet<Tuple2<String, Integer>> counts = dataSource.flatMap(new FlatMapFunction<Person, Tuple2<String, Integer>>() {
             @Override
             public void flatMap(Person value, Collector<Tuple2<String, Integer>> out) throws Exception {
-                out.collect(new Tuple2<>(value.getName().toLowerCase(), value.getAge()));
+                out.collect(Tuple2.of(value.getName().toLowerCase(), value.getAge()));
             }
         }).groupBy(0).max(1);
 
@@ -52,9 +53,9 @@ public class EntityBatchJob {
                                 maxAge = value.getAge();
                             }
                         }
-                        out.collect(new Tuple2<>(name, maxAge));
+                        out.collect(Tuple2.of(name, maxAge));
                     }
-                }).collect().forEach(tuple2 -> System.out.println(tuple2.f0 + ":" + tuple2.f1));
+                }).print();
     }
 
     private static class Person {
@@ -70,16 +71,16 @@ public class EntityBatchJob {
             return name;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
         public int getAge() {
             return age;
         }
 
-        public void setAge(int age) {
-            this.age = age;
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
         }
     }
 }

@@ -43,7 +43,7 @@ public class WordCountBatchJob {
             String[] tokens = value.toLowerCase().split("\\W+");
 
             // emit the pairs
-            Stream.of(tokens).filter(StringUtils::isNotEmpty).forEach(token -> out.collect(new Tuple2<>(token, 1)));
+            Stream.of(tokens).filter(StringUtils::isNotEmpty).forEach(token -> out.collect(Tuple2.of(token, 1)));
         }
     }
 }
