@@ -6,6 +6,7 @@ import org.apache.flink.api.common.functions.RichFlatMapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.types.StringValue;
 import org.apache.flink.util.Collector;
 
 import java.util.stream.Stream;
@@ -24,7 +25,7 @@ public class WordCountBatchJob {
         }
 
         ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-        DataSet<String> text = env.readTextFile(args[0]);
+        DataSet<StringValue> text = env.readTextFileWithValue(args[0]);
         DataSet<Tuple2<String, Integer>> counts =
                 // split up the lines in pairs (2-tuples) containing: (word,1)
                 text.flatMap(new Tokenizer())
@@ -34,12 +35,12 @@ public class WordCountBatchJob {
         counts.print();
     }
 
-    public static class Tokenizer extends RichFlatMapFunction<String, Tuple2<String, Integer>> {
+    public static class Tokenizer extends RichFlatMapFunction<StringValue, Tuple2<String, Integer>> {
 
         @Override
-        public void flatMap(String value, Collector<Tuple2<String, Integer>> out) {
+        public void flatMap(StringValue value, Collector<Tuple2<String, Integer>> out) {
             // normalize and split the line
-            String[] tokens = value.toLowerCase().split("\\W+");
+            String[] tokens = value.getValue().toLowerCase().split("\\W+");
 
             // emit the pairs
             Stream.of(tokens).filter(StringUtils::isNotEmpty).forEach(token -> out.collect(Tuple2.of(token, 1)));
