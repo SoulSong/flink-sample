@@ -1,5 +1,7 @@
 package com.shf.flink.sample.batch.connectors;
 
+import com.shf.flink.sample.batch.Person;
+
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;

@@ -1,7 +1,7 @@
 package com.shf.flink.sample.stream.sink.extend;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.shf.flink.sample.batch.connectors.Person;
+import com.shf.flink.sample.batch.Person;
 
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;
@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Description:
- * Load csv and insert all records into postgreSQL
+ * Load csv by FileInputFormat and insert all records into postgreSQL
  *
  * @author: songhaifeng
  * @date: 2019/8/7 21:42

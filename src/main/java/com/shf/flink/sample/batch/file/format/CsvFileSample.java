@@ -1,4 +1,6 @@
-package com.shf.flink.sample.batch.connectors;
+package com.shf.flink.sample.batch.file.format;
+
+import com.shf.flink.sample.batch.Person;
 
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;

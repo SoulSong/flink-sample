@@ -1,4 +1,4 @@
-package com.shf.flink.sample.batch.connectors;
+package com.shf.flink.sample.batch;
 
 import java.io.Serializable;
 
