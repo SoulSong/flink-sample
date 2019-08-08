@@ -8,6 +8,8 @@ import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.io.jdbc.JDBCOutputFormat;
 import org.apache.flink.types.Row;
 
+import static com.shf.flink.sample.batch.Constants.PERSON_CSV_FILE_PATH;
+
 /**
  * Description:
  *  <pre>
@@ -26,9 +28,7 @@ public class JdbcOutputSample {
     public static void main(String[] args) throws Exception {
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
 
-        final String csvFilePath = "D:/learnworkspace/fink-sample/src/main/resources/sample/person.csv";
-
-        DataSet<Person> personPojos = env.readCsvFile(csvFilePath).ignoreFirstLine()
+        DataSet<Person> personPojos = env.readCsvFile(PERSON_CSV_FILE_PATH).ignoreFirstLine()
                 .pojoType(Person.class, "name", "age", "sex", "address");
 
         // build and configure OutputFormat

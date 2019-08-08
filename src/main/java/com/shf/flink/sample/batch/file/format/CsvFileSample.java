@@ -6,6 +6,8 @@ import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.tuple.Tuple2;
 
+import static com.shf.flink.sample.batch.Constants.PERSON_CSV_FILE_PATH;
+
 /**
  * Description:
  *
@@ -16,10 +18,9 @@ public class CsvFileSample {
 
     public static void main(String[] args) throws Exception {
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
-        final String csvFilePath = "D:/learnworkspace/fink-sample/src/main/resources/sample/person.csv";
 
         // read a CSV file with four fields, taking only the first and second field
-        DataSet<Tuple2<String, Integer>> person = env.readCsvFile(csvFilePath)
+        DataSet<Tuple2<String, Integer>> person = env.readCsvFile(PERSON_CSV_FILE_PATH)
                 .ignoreFirstLine().includeFields("1100")
                 .types(String.class, Integer.class);
 
@@ -35,7 +36,7 @@ public class CsvFileSample {
             have a public getter- and a setter- method that follows the Java beans naming conventions for getters and setters.
         </pre>
          */
-        DataSet<Person> personPojos = env.readCsvFile(csvFilePath).ignoreFirstLine()
+        DataSet<Person> personPojos = env.readCsvFile(PERSON_CSV_FILE_PATH).ignoreFirstLine()
                 .pojoType(Person.class, "name", "age", "sex", "address");
         personPojos.print();
     }

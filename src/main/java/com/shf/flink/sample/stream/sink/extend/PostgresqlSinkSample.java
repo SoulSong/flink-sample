@@ -20,6 +20,8 @@ import java.sql.PreparedStatement;
 import java.util.Collections;
 import java.util.List;
 
+import static com.shf.flink.sample.batch.Constants.PERSON_CSV_FILE_PATH;
+
 /**
  * Description:
  * Load csv by FileInputFormat and insert all records into postgreSQL
@@ -32,11 +34,9 @@ public class PostgresqlSinkSample {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        final String csvFilePath = "D:/learnworkspace/fink-sample/src/main/resources/sample/person.csv";
-
         PojoTypeInfo<Person> pojoType = (PojoTypeInfo<Person>) TypeExtractor.createTypeInfo(Person.class);
         String[] fields = new String[]{"name", "age", "sex", "address"};
-        PojoCsvInputFormat<Person> personCsvInputFormat = new PojoCsvInputFormat<>(Path.fromLocalFile(Paths.get(csvFilePath).toFile()),
+        PojoCsvInputFormat<Person> personCsvInputFormat = new PojoCsvInputFormat<>(Path.fromLocalFile(Paths.get(PERSON_CSV_FILE_PATH).toFile()),
                 pojoType, fields);
         personCsvInputFormat.setSkipFirstLineAsHeader(true);
 
