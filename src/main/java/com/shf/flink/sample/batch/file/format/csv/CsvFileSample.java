@@ -1,4 +1,4 @@
-package com.shf.flink.sample.batch.file.format;
+package com.shf.flink.sample.batch.file.format.csv;
 
 import com.shf.flink.sample.batch.Person;
 
