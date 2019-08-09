@@ -30,7 +30,7 @@ import org.apache.flink.core.fs.FileSystem;
  * @author: songhaifeng
  * @date: 2019/8/9 00:07
  */
-public class S3Sample {
+public class S3ReaderSample {
 
     public static void main(String[] args) throws Exception {
         final ExecutionEnvironment env = ExecutionEnvironment.getExecutionEnvironment();
