@@ -1,4 +1,4 @@
-package com.shf.flink.sample.stream.sink.extend;
+package com.shf.flink.sample.stream.sink.extend.postgres;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.shf.flink.sample.batch.Person;

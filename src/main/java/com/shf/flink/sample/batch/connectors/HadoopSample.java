@@ -9,6 +9,7 @@ import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.hadoop.mapred.HadoopInputFormat;
 import org.apache.flink.api.java.io.TextOutputFormat;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.core.fs.FileSystem;
 import org.apache.flink.util.Collector;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
@@ -51,7 +52,8 @@ public class HadoopSample {
                     }
                 });
 
-        output.writeAsFormattedText("hdfs://127.0.0.1:9000/flink/sample/txt/person.txt",new TextOutputFormat.TextFormatter<Person>(){
+        output.writeAsFormattedText("hdfs://127.0.0.1:9000/flink/sample/txt/person.txt", FileSystem.WriteMode.OVERWRITE,
+                new TextOutputFormat.TextFormatter<Person>() {
             @Override
             public String format(Person value) {
                 return JSONObject.toJSONString(value);

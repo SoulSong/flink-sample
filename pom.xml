@@ -143,6 +143,10 @@
 					<artifactId>jackson-mapper-asl</artifactId>
 					<groupId>org.codehaus.jackson</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>avro</artifactId>
+					<groupId>org.apache.avro</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -161,30 +165,6 @@
 
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-core</artifactId>
-			<version>1.2.1</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-codec</artifactId>
-					<groupId>commons-codec</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-io</artifactId>
-					<groupId>commons-io</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-net</artifactId>
-					<groupId>commons-net</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-mapreduce-client-core</artifactId>
 			<version>${hadoop.version}</version>
 			<exclusions>
@@ -195,6 +175,10 @@
 				<exclusion>
 					<artifactId>jackson-xc</artifactId>
 					<groupId>org.codehaus.jackson</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>avro</artifactId>
+					<groupId>org.apache.avro</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -228,6 +212,10 @@
 					<artifactId>hadoop-yarn-api</artifactId>
 					<groupId>org.apache.hadoop</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>avro</artifactId>
+					<groupId>org.apache.avro</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -243,20 +231,35 @@
 			<artifactId>flink-avro</artifactId>
 			<version>${flink.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.avro</groupId>
-			<artifactId>avro</artifactId>
-			<version>1.8.2</version>
-		</dependency>
 		<!-- avro end -->
 
-		<!-- s3 -->
+		<!-- parquet start -->
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-parquet</artifactId>
+			<version>${flink.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-avro</artifactId>
+			<version>1.10.0</version>
+		</dependency>
+		<!-- parquet end -->
+
+		<!-- s3 start -->
 		<dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-s3-fs-hadoop</artifactId>
 			<version>${flink.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-aws</artifactId>
+			<version>${hadoop.version}</version>
+		</dependency>
+		<!-- s3 end -->
 
 		<!-- Add logging framework, to produce console output when running in the IDE. -->
 		<!-- These dependencies are excluded from the application JAR by default. -->
