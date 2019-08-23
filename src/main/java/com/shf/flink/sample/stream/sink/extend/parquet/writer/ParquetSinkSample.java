@@ -1,6 +1,7 @@
-package com.shf.flink.sample.stream.sink.extend.parquet;
+package com.shf.flink.sample.stream.sink.extend.parquet.writer;
 
 import com.shf.flink.sample.batch.Person;
+import com.shf.flink.sample.stream.sink.extend.parquet.UserParquet;
 
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;

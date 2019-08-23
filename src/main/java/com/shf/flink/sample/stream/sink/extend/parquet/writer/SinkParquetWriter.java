@@ -1,4 +1,4 @@
-package com.shf.flink.sample.stream.sink.extend.parquet;
+package com.shf.flink.sample.stream.sink.extend.parquet.writer;
 
 import org.apache.avro.Schema;
 import org.apache.flink.streaming.connectors.fs.Writer;
