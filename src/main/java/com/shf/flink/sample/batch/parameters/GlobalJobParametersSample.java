@@ -5,6 +5,7 @@ import org.apache.flink.api.common.functions.RichFilterFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.configuration.Configuration;
+import org.apache.flink.configuration.DelegatingConfiguration;
 
 /**
  * Description:
@@ -32,8 +33,8 @@ public class GlobalJobParametersSample {
                 super.open(parameters);
                 // retrieve global setting
                 ExecutionConfig.GlobalJobParameters globalParams = getRuntimeContext().getExecutionConfig().getGlobalJobParameters();
-                Configuration globConf = (Configuration) globalParams;
-                limit = globConf.getInteger("limit", 1);
+                DelegatingConfiguration configuration = new DelegatingConfiguration((Configuration) globalParams, "");
+                limit = configuration.getInteger("limit", 1);
             }
 
             @Override
@@ -41,6 +42,7 @@ public class GlobalJobParametersSample {
                 return value > limit;
             }
         }).print();
+
     }
 
 }

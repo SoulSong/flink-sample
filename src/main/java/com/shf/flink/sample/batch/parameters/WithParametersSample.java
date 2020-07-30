@@ -4,6 +4,7 @@ import org.apache.flink.api.common.functions.RichFilterFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.configuration.Configuration;
+import org.apache.flink.configuration.DelegatingConfiguration;
 
 /**
  * Description:
@@ -27,7 +28,8 @@ public class WithParametersSample {
 
             @Override
             public void open(Configuration parameters) throws Exception {
-                limit = parameters.getInteger("limit", 0);
+                DelegatingConfiguration configuration = new DelegatingConfiguration(parameters, "");
+                limit = configuration.getInteger("limit", 0);
             }
 
             @Override
