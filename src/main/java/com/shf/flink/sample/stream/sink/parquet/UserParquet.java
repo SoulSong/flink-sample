@@ -1,15 +1,11 @@
-package com.shf.flink.sample.stream.sink.extend.parquet;
-
-
-import org.apache.avro.Schema;
-import org.apache.avro.generic.IndexedRecord;
+package com.shf.flink.sample.stream.sink.parquet;
 
 import java.io.Serializable;
 
 /**
  * @author songhaifeng
  */
-public class UserParquet implements IndexedRecord, Serializable {
+public class UserParquet implements Serializable {
     private String name;
     private Integer age;
     private String sex;
@@ -55,37 +51,6 @@ public class UserParquet implements IndexedRecord, Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    @Override
-    public void put(int i, Object o) {
-    }
-
-    /**
-     * index value depends on keys order in user.avsc file
-     *
-     * @param i parameter index
-     * @return value
-     */
-    @Override
-    public Object get(int i) {
-        switch (i) {
-            case 0:
-                return name;
-            case 1:
-                return age;
-            case 2:
-                return sex;
-            case 3:
-                return address;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public Schema getSchema() {
-        return null;
     }
 
     @Override
