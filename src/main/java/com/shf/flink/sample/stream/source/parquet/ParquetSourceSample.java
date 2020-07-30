@@ -1,6 +1,6 @@
 package com.shf.flink.sample.stream.source.parquet;
 
-import com.shf.flink.sample.stream.sink.parquet.UserParquet;
+import com.shf.flink.sample.batch.UserParquet;
 import org.apache.avro.Schema;
 import org.apache.avro.reflect.ReflectData;
 import org.apache.flink.api.common.functions.RichMapFunction;
@@ -34,7 +34,7 @@ public class ParquetSourceSample {
         env.enableCheckpointing(2 * 1000, CheckpointingMode.EXACTLY_ONCE);
 
         // 需要指定至目录的最后一级
-        String filePathToWrite = OUT_ROOT_PATH + "user_parquet/2020-07-30--19-19";
+        String filePathToWrite = OUT_ROOT_PATH + "user_parquet/2020-07-30--19-55";
         ParquetPojoInputFormat<UserParquet> inputFormat = new ParquetPojoInputFormat<>(
                 new Path(filePathToWrite), MessageTypeBuilderByAvro.build(UserParquet.class), (PojoTypeInfo<UserParquet>) Types.POJO(UserParquet.class));
         TypeInformation<UserParquet> pojoType = TypeExtractor.createTypeInfo(UserParquet.class);

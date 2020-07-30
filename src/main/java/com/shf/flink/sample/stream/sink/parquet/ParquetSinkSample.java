@@ -1,5 +1,6 @@
 package com.shf.flink.sample.stream.sink.parquet;
 
+import com.shf.flink.sample.batch.UserParquet;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.CheckpointingMode;
