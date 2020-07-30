@@ -35,6 +35,8 @@ public class DistributedCacheSample {
         DataSet<Tuple2<String, Integer>> persons = env.readCsvFile("file:///" + PERSON_CSV_FILE_PATH)
                 .ignoreFirstLine().includeFields("1100").types(String.class, Integer.class);
 
+        String outputCsv = "C:/Users/songh/Desktop/11.csv";
+
         persons.flatMap(new RichFlatMapFunction<Tuple2<String, Integer>, Tuple3<String, String, Integer>>() {
             File emailCsv = null;
 
@@ -55,9 +57,17 @@ public class DistributedCacheSample {
                     }
                 }
             }
-        }).withForwardedFields("f1->f2").writeAsCsv("C:/Users/songhaifeng/Desktop/11.csv");
+        })
+                // 输入中的第2个字段不进行任何修改直接copy至输出中的第3个字段
+                .withForwardedFields("f0->f0;f1->f2")
+                .writeAsCsv(outputCsv);
 
         env.execute();
+
+        DataSet<Tuple3<String, String, Integer>> out = env.readCsvFile("file:///" + outputCsv)
+                .types(String.class, String.class, Integer.class);
+        System.out.println("check output result===================>");
+        out.print();
 
     }
 }
