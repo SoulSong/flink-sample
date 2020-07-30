@@ -1,4 +1,4 @@
-package com.shf.flink.sample.batch.connectors;
+package com.shf.flink.sample.batch.connectors.s3;
 
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
