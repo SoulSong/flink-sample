@@ -8,8 +8,10 @@ package com.shf.flink.sample.batch;
  */
 public interface Constants {
 
-    String PERSON_CSV_FILE_PATH = "D:/learnworkspace/fink-sample/src/main/resources/sample/person.csv";
+    String OUT_ROOT_PATH = "C:/Users/songh/Desktop/";
 
-    String EMAIL_CSV_FILE_PATH = "D:/learnworkspace/fink-sample/src/main/resources/sample/emails.csv";
+    String SAMPLE_ROOT_PATH = "D:/learnworkspace/fink-sample/src/main/resources/sample/";
+    String PERSON_CSV_FILE_PATH = SAMPLE_ROOT_PATH + "person.csv";
+    String EMAIL_CSV_FILE_PATH = SAMPLE_ROOT_PATH + "emails.csv";
 
 }

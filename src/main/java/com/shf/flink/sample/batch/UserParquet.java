@@ -1,4 +1,4 @@
-package com.shf.flink.sample.stream.sink.parquet;
+package com.shf.flink.sample.batch;
 
 import java.io.Serializable;
 
