@@ -18,6 +18,7 @@ public class BulkIterationsSample {
 
         // Create initial IterativeDataSet
         int maxIterations = 10000;
+        // 初始值
         IterativeDataSet<Integer> initial = env.fromElements(2, 3).iterate(maxIterations);
 
         // 每个element会循环执行maxIterations次，且每次均会在上一次的返回值的基础上自增一，如此反复maxIterations次
@@ -30,15 +31,9 @@ public class BulkIterationsSample {
 
         // Iteratively transform the IterativeDataSet
         DataSet<Integer> count = initial.closeWith(iteration);
-
         // 10002
         // 10003
-        count.map(new MapFunction<Integer, Integer>() {
-            @Override
-            public Integer map(Integer count) throws Exception {
-                return count;
-            }
-        }).print();
+        count.print();
     }
 
 }
